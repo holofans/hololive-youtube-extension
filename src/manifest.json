@@ -1,0 +1,32 @@
+{
+  "name": "hololive-youtube-extension",
+  "description": "A Vue.js web extension",
+  "version": null,
+  "manifest_version": 2,
+  "icons": {
+    "48": "icons/icon_48.png",
+    "128": "icons/icon_128.png"
+  },
+  "browser_action": {
+    "default_title": "Watch Hololive",
+    "default_popup": "popup/popup.html"
+  },
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
+  },
+  "content_scripts": [
+    {
+      "run_at": "document_idle",
+      "js": ["./content/content.js"],
+      "css": ["./content/content.css"],
+      "matches": ["https://www.youtube.com/*"]
+    }
+  ],
+  "options_ui": {
+    "page": "options/options.html",
+    "chrome_style": true
+  },
+  "web_accessible_resources": ["images/*/*.png"]
+}
