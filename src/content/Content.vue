@@ -8,19 +8,29 @@
         is-icon-button
         has-no-text
       >
-        <!-- this doesnt work -->
+      <!-- A series of confusing classes to make youtube css feel compatible with this button -->
         <div id="scheduleButton" class="style-scope ytd-topbar-menu-button-renderer">
           <div class="yt-simple-endpoint style-scope ytd-topbar-menu-button-renderer" tabindex="-1">
             <div id="button" class="style-scope ytd-topbar-menu-button-renderer style-default">
-              <!--css-build:shady-->
-              <button id="button" class="style-scope yt-icon-button" aria-label="Create">
+              <button id="button" class="style-scope yt-icon-button">
                 <div class="style-scope ytd-topbar-menu-button-renderer yt-icon-holder">
                   <div
                     class="icon-img is-live"
                     :style="{'background-image': `url('https://yt3.ggpht.com/a-/AOh14GifXOBWaK2De2pJO_ufNtv7euW4DKdTFAtlqw=s68-c-k-c0x00ffffff-no-rj-mo')`}"
                   ></div>
                 </div>
+                <span class="note is-live">LIVE</span>
               </button>
+              <!-- <button id="button" class="style-scope yt-icon-button">
+                <div class="style-scope ytd-topbar-menu-button-renderer yt-icon-holder">
+                  <div
+                    class="icon-img"
+                    :style="{'background-image': `url('https://yt3.ggpht.com/a-/AOh14GifXOBWaK2De2pJO_ufNtv7euW4DKdTFAtlqw=s68-c-k-c0x00ffffff-no-rj-mo')`}"
+                  ></div>
+                </div>
+                <span class="note">1h</span>
+              </button> -->
+
             </div>
           </div>
         </div>
@@ -81,14 +91,34 @@ export default {
       border-radius: 5px;
       background-size: 30px 30px;
       background-position: -3px -3px;
-    }
-    .is-live {
-      border: 1px solid red;
-      box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.4);
-      transform: scale(1);
-      animation: pulse 5s infinite;
+      border: 1px solid rgba(30,30,30, 0.6);
+
+      &.is-live {
+        border: 1px solid red;
+        box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.4);
+        transform: scale(1);
+        animation: pulse 5s infinite;
+      }
     }
   }
+  .note {
+    z-index: 3;
+    float: left;
+    position: relative;
+    font-family: "Open Sans", "Roboto", "Lato", monospace;
+    width: 24px;
+    text-align: center;
+    font-size: 9px;
+    margin-top: 0px;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;    // transform: scale(1,0.7);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: geometricPrecision;
+    &.is-live {
+      color: red;
+    }
+  }
+
 }
 
 @keyframes pulse {
