@@ -1,5 +1,6 @@
 <template>
   <div class="main">
+    <!-- Contains things that go into the top-bar of Youtube  -->
     <div class="top-bar-elements">
       <div
         class="style-scope ytd-masthead style-default"
@@ -24,15 +25,8 @@
           </div>
         </div>
       </div>
-      <!-- <div class="top-bar-img">
-          <img src="https://yt3.ggpht.com/a/AATXAJxta5htwKOSOGXSWuWv6gMxf_SINCZ60_WG3vOM=s48-c-k-c0xffffffff-no-rj-mo">
-        </div>
-      <div>Live now</div>-->
-      <!-- <div class="social-share__links"> -->
-      <!-- <a href="javaScript:void(0);" class="social-share__link social-share__link--facebook">Facebook</a>
-        <a href="javaScript:void(0);" class="social-share__link social-share__link--twitter">Twitter</a>
-      <a href="javaScript:void(0);" class="social-share__link social-share__link--google">Google +</a>-->
     </div>
+    <!-- End Top-Bar Elements -->
   </div>
 </template>
 
@@ -79,14 +73,6 @@ export default {
     width: 24px;
     height: 24px;
     position: relative;
-    fill: var(--iron-icon-fill-color, currentcolor);
-    stroke: var(--iron-icon-stroke-color, none);
-    width: var(--iron-icon-width, 24px);
-    height: var(--iron-icon-height, 24px);
-    margin-left: var(--iron-icon_-_margin-left);
-    margin-bottom: var(--iron-icon_-_margin-bottom);
-    margin-right: var(--iron-icon_-_margin-right);
-    margin-top: var(--iron-icon_-_margin-top);
 
     .icon-img {
       box-sizing: content-box;
