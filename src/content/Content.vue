@@ -1,45 +1,29 @@
 <template>
   <div class="main">
     <div class="top-bar-elements">
-      <ytd-topbar-menu-button-renderer
+      <div
         class="style-scope ytd-masthead style-default"
         use-keyboard-focused
         is-icon-button
         has-no-text
-        v-pre
       >
-      <!-- this doesnt work -->
-        <div id="button" class="style-scope ytd-topbar-menu-button-renderer">
-          <a class="yt-simple-endpoint style-scope ytd-topbar-menu-button-renderer" tabindex="-1">
-            <yt-icon-button
-              id="button"
-              class="style-scope ytd-topbar-menu-button-renderer style-default"
-              v-pre
-            >
+        <!-- this doesnt work -->
+        <div id="scheduleButton" class="style-scope ytd-topbar-menu-button-renderer">
+          <div class="yt-simple-endpoint style-scope ytd-topbar-menu-button-renderer" tabindex="-1">
+            <div id="button" class="style-scope ytd-topbar-menu-button-renderer style-default">
               <!--css-build:shady-->
-              <button v-pre id="button" class="style-scope yt-icon-button" aria-label="Create">
-                <yt-icon v-pre class="style-scope ytd-topbar-menu-button-renderer">
-                  <svg
-                    viewBox="0 0 24 24"
-                    preserveAspectRatio="xMidYMid meet"
-                    focusable="false"
-                    style="pointer-events: none; display: block; width: 100%; height: 100%;"
-                    class="style-scope yt-icon"
-                  >
-                    <g class="style-scope yt-icon">
-                      <path
-                        d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4zM14 13h-3v3H9v-3H6v-2h3V8h2v3h3v2z"
-                        class="style-scope yt-icon"
-                      />
-                    </g>
-                  </svg>
-                  <!--css-build:shady-->
-                </yt-icon>
+              <button id="button" class="style-scope yt-icon-button" aria-label="Create">
+                <div class="style-scope ytd-topbar-menu-button-renderer yt-icon-holder">
+                  <div
+                    class="icon-img is-live"
+                    :style="{'background-image': `url('https://yt3.ggpht.com/a-/AOh14GifXOBWaK2De2pJO_ufNtv7euW4DKdTFAtlqw=s68-c-k-c0x00ffffff-no-rj-mo')`}"
+                  ></div>
+                </div>
               </button>
-            </yt-icon-button>
-          </a>
+            </div>
+          </div>
         </div>
-      </ytd-topbar-menu-button-renderer>
+      </div>
       <!-- <div class="top-bar-img">
           <img src="https://yt3.ggpht.com/a/AATXAJxta5htwKOSOGXSWuWv6gMxf_SINCZ60_WG3vOM=s48-c-k-c0xffffffff-no-rj-mo">
         </div>
@@ -79,18 +63,62 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.schedule-button {
-  .top-bar-img img {
-    width: 20px;
-    height: 20px;
-  }
-  /* color: red;
-  position: fixed;
-  z-index: 5000;
-  top: 5px;
-  left: 15%; */
+.main {
+  margin-right: 8px;
 }
-img {
-  border: 1px solid red;
+.top-bar-elements {
+  #scheduleButton {
+    line-height: 1;
+    padding: var(--yt-button-icon-padding, 8px);
+    width: 24px;
+    height: 24px;
+  }
+
+  .yt-icon-holder {
+    display: block;
+    width: 24px;
+    height: 24px;
+    position: relative;
+    fill: var(--iron-icon-fill-color, currentcolor);
+    stroke: var(--iron-icon-stroke-color, none);
+    width: var(--iron-icon-width, 24px);
+    height: var(--iron-icon-height, 24px);
+    margin-left: var(--iron-icon_-_margin-left);
+    margin-bottom: var(--iron-icon_-_margin-bottom);
+    margin-right: var(--iron-icon_-_margin-right);
+    margin-top: var(--iron-icon_-_margin-top);
+
+    .icon-img {
+      box-sizing: content-box;
+      width: 24px;
+      height: 24px;
+      border-radius: 5px;
+      background-size: 30px 30px;
+      background-position: -3px -3px;
+    }
+    .is-live {
+      border: 1px solid red;
+      box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.4);
+      transform: scale(1);
+      animation: pulse 5s infinite;
+    }
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.8);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 5px rgba(255, 0, 0, 0);
+  }
+
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+  }
 }
 </style>
