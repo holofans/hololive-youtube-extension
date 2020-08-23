@@ -1,23 +1,25 @@
 <template>
   <div class="yt-simple-endpoint" tabindex="-1">
-    <b-tooltip
+    <!-- <b-tooltip
       type="is-dark"
       position="is-left"
       :triggers="['click']"
       :auto-close="['outside', 'escape']"
-    >
+    > -->
       <div id="button" class=" style-default">
-        <button id="button" class=" not-yt-icon-button">
+        <button id="button" class="not-yt-icon-button" @click=playCurrent>
           <div class="yt-icon-holder">
             <div
-              class="icon-img is-live"
-              :style="{'background-image': `url('https://yt3.ggpht.com/a-/AOh14GifXOBWaK2De2pJO_ufNtv7euW4DKdTFAtlqw=s68-c-k-c0x00ffffff-no-rj-mo')`}"
+              class="icon-img"
+              :class="{'is-live': isLive}"
+              :style="{'background-image': `url('${channelThumbnail}')`}"
             ></div>
           </div>
-          <span class="note is-live">LIVE</span>
+          <span class="note is-live" v-if="isLive">LIVE</span>
+          <span class="note" v-if="!isLive">{{timeToLive}}</span>
         </button>
       </div>
-      <template v-slot:content>
+      <!-- <template v-slot:content>
         <span class="live-details is-dark px-0">
           <b-button
             icon-left="play"
@@ -34,15 +36,15 @@
             @click=toggleSchedule
           ></b-button>
         </span>
-      </template>
-    </b-tooltip>
+      </template> 
+    </b-tooltip> -->
   </div>
 </template>
 
 <script>
 export default {
   name: 'TopBarButton',
-  props: ['channelThumbnail', 'isLive', 'timeToLive'],
+  props: ['channelThumbnail', 'isLive', 'currentVideoURL', 'timeToLive'],
   created() {},
   mounted() {},
   destroyed() {},
@@ -50,7 +52,7 @@ export default {
 
   },
   playCurrent() {
-
+    window.location = this.currentVideoURL;
   } },
 };
 </script>

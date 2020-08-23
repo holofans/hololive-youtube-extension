@@ -10,7 +10,10 @@
       >
         <!-- A series of confusing classes to make youtube css feel compatible with this button -->
         <div id="scheduleButton" class="style-scope ytd-topbar-menu-button-renderer">
-          <TopBarButton></TopBarButton>
+          <TopBarButton 
+            :channelThumbnail="'https://yt3.ggpht.com/a-/AOh14Gi2inaJUCKHII1OqCcyuhXTpAnRay7R1Qw08A=s68-c-k-c0x00ffffff-no-rj-mo'"
+            :isLive="true"
+            currentVideoURL="https://www.youtube.com/watch?v=HSN24g8LDMQ"></TopBarButton>
         </div>
       </div>
     </div>
@@ -40,62 +43,8 @@ export default {
 @import url('https://cdn.materialdesignicons.com/5.3.45/css/materialdesignicons.min.css');
 
 #hsMain {
+  //This block helps us compile CSS such that Bulma CSS will only impact our own module and not screw with youtube.
   @import '~bulma/sass/utilities/_all';
-
-  // Set your colors
-  $primary: #8c67ef;
-  $primary-invert: findColorInvert($primary);
-  $twitter: #4099ff;
-  $twitter-invert: findColorInvert($twitter);
-
-  // Setup $colors to use as bulma classes (e.g. 'is-twitter')
-  $colors: (
-    'white': (
-      $white,
-      $black,
-    ),
-    'black': (
-      $black,
-      $white,
-    ),
-    'light': (
-      $light,
-      $light-invert,
-    ),
-    'dark': (
-      $dark,
-      $dark-invert,
-    ),
-    'primary': (
-      $primary,
-      $primary-invert,
-    ),
-    'info': (
-      $info,
-      $info-invert,
-    ),
-    'success': (
-      $success,
-      $success-invert,
-    ),
-    'warning': (
-      $warning,
-      $warning-invert,
-    ),
-    'danger': (
-      $danger,
-      $danger-invert,
-    ),
-    'twitter': (
-      $twitter,
-      $twitter-invert,
-    ),
-  );
-
-  // Links
-  $link: $primary;
-  $link-invert: $primary-invert;
-  $link-focus-border: $primary;
 
   // Import Bulma and Buefy styles
   @import '~bulma';
