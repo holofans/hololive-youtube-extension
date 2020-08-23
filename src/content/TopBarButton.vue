@@ -1,14 +1,14 @@
 <template>
-  <div class="yt-simple-endpoint style-scope ytd-topbar-menu-button-renderer" tabindex="-1">
+  <div class="yt-simple-endpoint" tabindex="-1">
     <b-tooltip
       type="is-dark"
       position="is-left"
       :triggers="['click']"
       :auto-close="['outside', 'escape']"
     >
-      <div id="button" class="style-scope ytd-topbar-menu-button-renderer style-default">
-        <button id="button" class="style-scope yt-icon-button">
-          <div class="style-scope ytd-topbar-menu-button-renderer yt-icon-holder">
+      <div id="button" class=" style-default">
+        <button id="button" class=" not-yt-icon-button">
+          <div class="yt-icon-holder">
             <div
               class="icon-img is-live"
               :style="{'background-image': `url('https://yt3.ggpht.com/a-/AOh14GifXOBWaK2De2pJO_ufNtv7euW4DKdTFAtlqw=s68-c-k-c0x00ffffff-no-rj-mo')`}"
@@ -24,12 +24,14 @@
             type="is-text"
             size="is-small like-rushias-chest"
             class="py-1 px-4 mx-0"
+            @click=playCurrent
           ></b-button>
           <b-button
             icon-left="calendar-outline"
             type="is-text"
             size="is-small like-rushias-chest"
             class="py-1 px-4 mx-1"
+            @click=toggleSchedule
           ></b-button>
         </span>
       </template>
@@ -44,11 +46,31 @@ export default {
   created() {},
   mounted() {},
   destroyed() {},
-  methods: {},
+  methods: { toggleSchedule() {
+
+  },
+  playCurrent() {
+
+  } },
 };
 </script>
 
 <style lang="scss" scoped>
+.not-yt-icon-button {
+  vertical-align: middle;
+color: inherit;
+outline: none;
+background: none;
+margin: 0;
+border: none;
+padding: 0;
+width: 100%;
+height: 100%;
+line-height: 0;
+cursor: pointer;
+-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+-webkit-tap-highlight-color: transparent;
+}
 .yt-icon-holder {
   display: block;
   width: 24px;

@@ -23,20 +23,16 @@ import TopBarButton from './TopBarButton.vue';
 
 export default {
   name: 'Content',
-  components: {TopBarButton},
+  components: { TopBarButton },
   data() {
     return {
       anchorLeft: 0,
     };
   },
-  created() {
-  },
-  mounted() {
-  },
-  destroyed() {
-  },
-  methods: {
-  },
+  created() {},
+  mounted() {},
+  destroyed() {},
+  methods: {},
 };
 </script>
 
@@ -44,26 +40,56 @@ export default {
 @import url('https://cdn.materialdesignicons.com/5.3.45/css/materialdesignicons.min.css');
 
 #hsMain {
-  @import "~bulma/sass/utilities/_all";
+  @import '~bulma/sass/utilities/_all';
 
   // Set your colors
   $primary: #8c67ef;
   $primary-invert: findColorInvert($primary);
-  $twitter: #4099FF;
+  $twitter: #4099ff;
   $twitter-invert: findColorInvert($twitter);
 
   // Setup $colors to use as bulma classes (e.g. 'is-twitter')
   $colors: (
-      "white": ($white, $black),
-      "black": ($black, $white),
-      "light": ($light, $light-invert),
-      "dark": ($dark, $dark-invert),
-      "primary": ($primary, $primary-invert),
-      "info": ($info, $info-invert),
-      "success": ($success, $success-invert),
-      "warning": ($warning, $warning-invert),
-      "danger": ($danger, $danger-invert),
-      "twitter": ($twitter, $twitter-invert)
+    'white': (
+      $white,
+      $black,
+    ),
+    'black': (
+      $black,
+      $white,
+    ),
+    'light': (
+      $light,
+      $light-invert,
+    ),
+    'dark': (
+      $dark,
+      $dark-invert,
+    ),
+    'primary': (
+      $primary,
+      $primary-invert,
+    ),
+    'info': (
+      $info,
+      $info-invert,
+    ),
+    'success': (
+      $success,
+      $success-invert,
+    ),
+    'warning': (
+      $warning,
+      $warning-invert,
+    ),
+    'danger': (
+      $danger,
+      $danger-invert,
+    ),
+    'twitter': (
+      $twitter,
+      $twitter-invert,
+    ),
   );
 
   // Links
@@ -72,8 +98,8 @@ export default {
   $link-focus-border: $primary;
 
   // Import Bulma and Buefy styles
-  @import "~bulma";
-  @import "~buefy/src/scss/buefy";
+  @import '~bulma';
+  @import '~buefy/src/scss/buefy';
 }
 
 .main {
@@ -87,5 +113,4 @@ export default {
     height: 24px;
   }
 }
-
 </style>

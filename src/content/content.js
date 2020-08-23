@@ -10,9 +10,17 @@ console.log('Generating Vue');
 const UI_INJECT_NODE_ID_NAME = 'hololive-schedule-container';
 const UI_INJECT_NODE_ID_SELECTOR = `#${UI_INJECT_NODE_ID_NAME}`;
 
+if (window.hololive_keepalive) {
+  window.location.reload();
+  clearInterval(window.hololive_keepalive);
+}
+// window.hololive_keepalive = null;
+
 function setup() {
   const toCleanUp = document.querySelector(UI_INJECT_NODE_ID_SELECTOR);
-  if (toCleanUp) toCleanUp.remove();
+  if (toCleanUp) { window.location.reload(); } // toCleanUp.remove();
+
+  console.log('setting up');
   // debugger;
 
   const node = document.createElement('div');
