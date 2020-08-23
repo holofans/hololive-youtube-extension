@@ -18,18 +18,18 @@
         </button>
       </div>
       <template v-slot:content>
-        <span class="live-details p-0">
+        <span class="live-details is-dark px-0">
           <b-button
             icon-left="play"
             type="is-text"
             size="is-small like-rushias-chest"
-            class="py-0 px-2"
+            class="py-1 px-4 mx-0"
           ></b-button>
           <b-button
             icon-left="calendar-outline"
             type="is-text"
             size="is-small like-rushias-chest"
-            class="py-0 px-2"
+            class="py-1 px-4 mx-1"
           ></b-button>
         </span>
       </template>
@@ -110,16 +110,17 @@ export default {
 
 <style lang="scss">
 .live-details {
-  font-size: 18px;
+  // font-size: 18px;
   line-height: 19px;
   padding-top: 0;
   font-weight: 400;
   white-space: nowrap;
   i {
     font-size: 14px;
+    color: rgba(145,209,209,1);
   }
-  button:hover {
-    background-color: rgb(200, 180, 200);
+  button.button.is-text:hover {
+    background-color: rgba(52,71,71,1) !important;
   }
 }
 </style>
