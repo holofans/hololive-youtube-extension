@@ -27,7 +27,7 @@ import TopBarCalendarButton from './TopBarCalendarButton.vue';
 
 export default {
   name: 'Content',
-  components: { TopBarButton , TopBarCalendarButton},
+  components: { TopBarButton, TopBarCalendarButton },
   data() {
     return {
       lastQuery: new Date(0),
@@ -40,10 +40,11 @@ export default {
     showableVideos() {
       const { live, upcoming } = this.liveData;
       if (!live || !upcoming) return [];
-      const live_showable = live.length >= this.maxSpace ? live : live.slice(0, this.maxSpace);
-      const upcoming_showable = live.length >= this.maxSpace ? [] : upcoming.slice(0, this.maxSpace - live.length);
-      const upcoming_showable_sorted = upcoming_showable.sort((e1, e2) => e1.live_schedule > e2.live_schedule);
-      return live_showable.concat(upcoming_showable_sorted);
+      const live_showable = live.length <= this.maxSpace ? live : live.slice(0, this.maxSpace);
+      const upcoming_sorted = upcoming.sort((e1, e2) => e1.live_schedule > e2.live_schedule);
+      const upcoming_showable = live.length >= this.maxSpace
+        ? [] : upcoming_sorted.slice(0, this.maxSpace - live.length);
+      return live_showable.concat(upcoming_showable);
     },
   },
   created() {
