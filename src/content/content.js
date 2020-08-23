@@ -1,5 +1,9 @@
 import Vue from 'vue';
+import Buefy from 'buefy';
 import Content from './Content.vue';
+
+
+Vue.use(Buefy);
 
 console.log('Generating Vue');
 

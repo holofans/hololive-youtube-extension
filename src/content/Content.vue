@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div class="main" id="hsMain">
     <!-- Contains things that go into the top-bar of Youtube  -->
     <div class="top-bar-elements">
       <div
@@ -8,16 +8,24 @@
         is-icon-button
         has-no-text
       >
-      <!-- A series of confusing classes to make youtube css feel compatible with this button -->
+        <!-- A series of confusing classes to make youtube css feel compatible with this button -->
         <div id="scheduleButton" class="style-scope ytd-topbar-menu-button-renderer">
           <div class="yt-simple-endpoint style-scope ytd-topbar-menu-button-renderer" tabindex="-1">
             <div id="button" class="style-scope ytd-topbar-menu-button-renderer style-default">
               <button id="button" class="style-scope yt-icon-button">
                 <div class="style-scope ytd-topbar-menu-button-renderer yt-icon-holder">
+                  <b-tooltip multilined
+                              type="is-info is-light"
+                              position="is-bottom">
                   <div
                     class="icon-img is-live"
                     :style="{'background-image': `url('https://yt3.ggpht.com/a-/AOh14GifXOBWaK2De2pJO_ufNtv7euW4DKdTFAtlqw=s68-c-k-c0x00ffffff-no-rj-mo')`}"
                   ></div>
+                  <template v-slot:content>
+                    <!-- TODO ADD REACTIVITY -->
+                    <span class="live-details">aux information goes here</span>
+                  </template>
+                  </b-tooltip>
                 </div>
                 <span class="note is-live">LIVE</span>
               </button>
@@ -29,9 +37,8 @@
                   ></div>
                 </div>
                 <span class="note">1h</span>
-              </button> -->
-
-            </div>
+              </button>-->
+              </div>
           </div>
         </div>
       </div>
@@ -66,7 +73,40 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" module>
+#hsMain {
+  @import "~bulma/sass/utilities/_all";
+
+  // Set your colors
+  $primary: #8c67ef;
+  $primary-invert: findColorInvert($primary);
+  $twitter: #4099FF;
+  $twitter-invert: findColorInvert($twitter);
+
+  // Setup $colors to use as bulma classes (e.g. 'is-twitter')
+  $colors: (
+      "white": ($white, $black),
+      "black": ($black, $white),
+      "light": ($light, $light-invert),
+      "dark": ($dark, $dark-invert),
+      "primary": ($primary, $primary-invert),
+      "info": ($info, $info-invert),
+      "success": ($success, $success-invert),
+      "warning": ($warning, $warning-invert),
+      "danger": ($danger, $danger-invert),
+      "twitter": ($twitter, $twitter-invert)
+  );
+
+  // Links
+  $link: $primary;
+  $link-invert: $primary-invert;
+  $link-focus-border: $primary;
+
+  // Import Bulma and Buefy styles
+  @import "~bulma";
+  @import "~buefy/src/scss/buefy";
+}
+
 .main {
   margin-right: 8px;
 }
@@ -85,16 +125,16 @@ export default {
     position: relative;
 
     .icon-img {
-      box-sizing: content-box;
+      box-sizing: border-box;
       width: 24px;
       height: 24px;
       border-radius: 5px;
       background-size: 30px 30px;
-      background-position: -3px -3px;
-      border: 1px solid rgba(30,30,30, 0.6);
+      background-position: -4px -4px;
+      border: 1px solid rgba(30, 30, 30, 0.6);
 
       &.is-live {
-        border: 1px solid red;
+        border-color: red;
         box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.4);
         transform: scale(1);
         animation: pulse 5s infinite;
@@ -105,12 +145,12 @@ export default {
     z-index: 3;
     float: left;
     position: relative;
-    font-family: "Open Sans", "Roboto", "Lato", monospace;
+    font-family: 'Open Sans', 'Roboto', 'Lato', monospace;
     width: 24px;
     text-align: center;
     font-size: 9px;
     margin-top: 0px;
-    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;    // transform: scale(1,0.7);
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white; // transform: scale(1,0.7);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: geometricPrecision;
@@ -118,7 +158,6 @@ export default {
       color: red;
     }
   }
-
 }
 
 @keyframes pulse {
