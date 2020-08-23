@@ -1,6 +1,11 @@
 <template>
   <div class="yt-simple-endpoint style-scope ytd-topbar-menu-button-renderer" tabindex="-1">
-    <!-- <b-tooltip type="is-info is-light" position="is-bottom"> -->
+    <b-tooltip
+      type="is-dark"
+      position="is-left"
+      :triggers="['click']"
+      :auto-close="['outside', 'escape']"
+    >
       <div id="button" class="style-scope ytd-topbar-menu-button-renderer style-default">
         <button id="button" class="style-scope yt-icon-button">
           <div class="style-scope ytd-topbar-menu-button-renderer yt-icon-holder">
@@ -11,33 +16,31 @@
           </div>
           <span class="note is-live">LIVE</span>
         </button>
-        <!-- <button>
-          <b-icon
-            icon="account"
-            size="is-small"></b-icon>
-        </button> -->
-        <!-- <button id="button" class="style-scope yt-icon-button">
-                <div class="style-scope ytd-topbar-menu-button-renderer yt-icon-holder">
-                  <div
-                    class="icon-img"
-                    :style="{'background-image': `url('https://yt3.ggpht.com/a-/AOh14GifXOBWaK2De2pJO_ufNtv7euW4DKdTFAtlqw=s68-c-k-c0x00ffffff-no-rj-mo')`}"
-                  ></div>
-                </div>
-                <span class="note">1h</span>
-        </button>-->
       </div>
-      <!-- <template v-slot:content>
-        TODO ADD REACTIVITY -->
-        <!-- <span class="live-details">more</span>
+      <template v-slot:content>
+        <span class="live-details p-0">
+          <b-button
+            icon-left="play"
+            type="is-text"
+            size="is-small like-rushias-chest"
+            class="py-0 px-2"
+          ></b-button>
+          <b-button
+            icon-left="calendar-outline"
+            type="is-text"
+            size="is-small like-rushias-chest"
+            class="py-0 px-2"
+          ></b-button>
+        </span>
       </template>
-    </b-tooltip> -->
+    </b-tooltip>
   </div>
 </template>
 
 <script>
 export default {
   name: 'TopBarButton',
-  props: ['channelThumbnail', 'isLive'],
+  props: ['channelThumbnail', 'isLive', 'timeToLive'],
   created() {},
   mounted() {},
   destroyed() {},
@@ -107,10 +110,16 @@ export default {
 
 <style lang="scss">
 .live-details {
-  font-size: 13px;
-  line-height: 1em;
-  padding-top: 10px;
+  font-size: 18px;
+  line-height: 19px;
+  padding-top: 0;
   font-weight: 400;
   white-space: nowrap;
+  i {
+    font-size: 14px;
+  }
+  button:hover {
+    background-color: rgb(200, 180, 200);
+  }
 }
 </style>

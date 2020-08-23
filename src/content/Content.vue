@@ -83,7 +83,7 @@ export default {
   #scheduleButton {
     line-height: 1;
     padding: var(--yt-button-icon-padding, 8px);
-    width: 24px;
+    // width: 24px;
     height: 24px;
   }
 }
