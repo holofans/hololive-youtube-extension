@@ -1,5 +1,7 @@
 # Hololive Youtube Extension
 
+See section labelled **Running** for run instructions
+
 ![IMG](https://raw.githubusercontent.com/ugurcandede/Under-Construction/master/construction-scene/Capture.PNG)
 
 Readings for design:
