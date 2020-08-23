@@ -1,0 +1,150 @@
+<template>
+  <div class="yt-simple-endpoint" tabindex="-1">
+    <!-- <b-tooltip
+      type="is-dark"
+      position="is-left"
+      :triggers="['click']"
+      :auto-close="['outside', 'escape']"
+    > -->
+        <div id="button" class=" style-default">
+          <button id="button" class="not-yt-icon-button" @click=toggleSchedule>
+            <div class="yt-icon-holder">
+              <div
+                class="icon-img"
+              >
+               +
+              </div>
+            </div>
+            <span class="note">more</span>
+          </button>
+        </div>
+      <!-- <template v-slot:content>
+        <span class="live-details is-dark px-0">
+          <b-button
+            icon-left="play"
+            type="is-text"
+            size="is-small like-rushias-chest"
+            class="py-1 px-4 mx-0"
+            @click=playCurrent
+          ></b-button>
+          <b-button
+            icon-left="calendar-outline"
+            type="is-text"
+            size="is-small like-rushias-chest"
+            class="py-1 px-4 mx-1"
+            @click=toggleSchedule
+          ></b-button>
+        </span>
+      </template> 
+    </b-tooltip> -->
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'TopBarCalendarButton',
+  created() {},
+  mounted() {},
+  destroyed() {},
+  methods: { toggleSchedule() {
+
+  },
+  playCurrent() {
+    window.location = this.currentVideoURL;
+  } },
+};
+</script>
+
+<style lang="scss" scoped>
+.not-yt-icon-button {
+  vertical-align: middle;
+color: inherit;
+outline: none;
+background: none;
+margin: 0;
+border: none;
+padding: 0;
+width: 100%;
+height: 100%;
+line-height: 0;
+cursor: pointer;
+-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+-webkit-tap-highlight-color: transparent;
+}
+.yt-icon-holder {
+  display: block;
+  width: 24px;
+  height: 24px;
+  position: relative;
+
+  .icon-img {
+    box-sizing: border-box;
+    width: 24px;
+    height: 24px;
+    border-radius: 5px;
+    background-size: 30px 30px;
+    background-position: -4px -4px;
+    border: 1px solid rgba(30, 30, 30, 0.2);
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 14px;
+    color: rgba(76,226,226,1);
+    &.is-live {
+      border-color: red;
+      box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.4);
+      transform: scale(1);
+      animation: pulse 5s infinite;
+    }
+  }
+}
+.note {
+  z-index: 3;
+  position: relative;
+  font-family: 'Open Sans', 'Roboto', 'Lato', monospace;
+  width: 24px;
+  text-align: center;
+  font-size: 9px;
+  margin-top: 0px;
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white; // transform: scale(1,0.7);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: geometricPrecision;
+  &.is-live {
+    color: red;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.8);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 5px rgba(255, 0, 0, 0);
+  }
+
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+  }
+}
+</style>
+
+<style lang="scss">
+.live-details {
+  // font-size: 18px;
+  line-height: 19px;
+  padding-top: 0;
+  font-weight: 400;
+  white-space: nowrap;
+  i {
+    font-size: 14px;
+    color: rgba(145,209,209,1);
+  }
+  button.button.is-text:hover {
+    background-color: rgba(52,71,71,1) !important;
+  }
+}
+</style>

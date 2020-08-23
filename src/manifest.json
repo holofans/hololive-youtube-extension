@@ -28,5 +28,6 @@
     "page": "options/options.html",
     "chrome_style": true
   },
-  "web_accessible_resources": ["images/*/*.png"]
+  "web_accessible_resources": ["images/*/*.png"],
+  "permissions" : ["*://api.holotools.app/*"]
 }
