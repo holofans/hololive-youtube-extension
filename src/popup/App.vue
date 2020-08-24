@@ -6,10 +6,17 @@
 
 <script>
 export default {
-  data () {
-    return {}
-  }
-}
+  data() {
+    return {};
+  },
+};
 </script>
-
-
+<style lang="scss">
+body {
+  min-width: 420px; /* your desired width */
+  max-width: 100%;
+  position: relative;
+  vertical-align:middle;
+  padding: 12px;
+}
+</style>
