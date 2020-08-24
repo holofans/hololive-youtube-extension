@@ -1,7 +1,7 @@
 {
-  "name": "@holofans/hololive-youtube-extension",
+  "name": "hololive-youtube-extension",
   "version": "0.1.0",
-  "description": "Changes Youtube UI to better service Hololive & Other Streams",
+  "description": "Shows you which Hololivers are Live while you are browsing Youtube",
   "author": {
     "name": "Holofans Team",
     "url": "https://github.com/holofans"

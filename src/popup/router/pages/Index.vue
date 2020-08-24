@@ -7,8 +7,8 @@
       <a
         href="https://discord.gg/xJd9Der"
       >Hololive Creators Club Discord #holotools</a>
-      <br />フィードバック？
-      <a href="https://discord.gg/xJd9Der">ディスコード(#holotoolsチャネル)</a>で教えてください！
+      <br />
+      フィードバックを<a href="https://discord.gg/xJd9Der">ディスコード(#holotools)</a>で教えてください！
     </p>
     <p>
       Made with love using Vue.js. Bootstrapped with
