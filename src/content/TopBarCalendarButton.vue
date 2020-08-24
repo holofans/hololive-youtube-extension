@@ -78,20 +78,3 @@ export default {
   text-rendering: geometricPrecision;
 }
 </style>
-
-<style lang="scss">
-.live-details {
-  // font-size: 18px;
-  line-height: 19px;
-  padding-top: 0;
-  font-weight: 400;
-  white-space: nowrap;
-  i {
-    font-size: 14px;
-    color: rgba(145, 209, 209, 1);
-  }
-  button.button.is-text:hover {
-    background-color: rgba(52, 71, 71, 1) !important;
-  }
-}
-</style>

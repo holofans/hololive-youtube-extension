@@ -25,6 +25,8 @@
 import TopBarButton from './TopBarButton.vue';
 import TopBarCalendarButton from './TopBarCalendarButton.vue';
 
+const API_URL = 'https://api.holotools.app/v1/live?max_upcoming_hours=12&lookback_hours=0&hide_channel_desc=1';
+
 export default {
   name: 'Content',
   components: { TopBarButton, TopBarCalendarButton },
@@ -38,6 +40,7 @@ export default {
   },
   computed: {
     showableVideos() {
+      // truncates the array of videos to the limit that the UI is capable of showing.
       const { live, upcoming } = this.liveData;
       if (!live || !upcoming) return [];
       const live_showable = live.length <= this.maxSpace ? live : live.slice(0, this.maxSpace);
@@ -63,7 +66,15 @@ export default {
       handler() {
         setTimeout(() => {
           this.currentTime = +(new Date());
-        }, 60000);
+          // check if querying is necessary, we want to query once every 5 minutes unless
+          // the time is within 3 mins of :30 and :00, where we query every minute.
+          const currentMins = this.currentTime.getMinutes();
+          if (currentMins > 59 || currentMins < 5 || (currentMins > 29 && currentMins < 32)) {
+            this.queryLive(60); // try querying every minute
+          } else {
+            this.queryLive(300); // try querying every 5 minutes.
+          }
+        }, 10000);
       },
       immediate: true,
     },
@@ -71,20 +82,24 @@ export default {
   methods: {
     recalcSpace() {
       // each icon is approximately 40px in total space.
-      const searchbox = document.querySelector('#search-form');
-      if (!searchbox) return;
-      const firstbutton = document.querySelector('ytd-topbar-menu-button-renderer');
-      const availableSpace = firstbutton.offsetLeft - (searchbox.offsetLeft + searchbox.offsetWidth);
-      const approxButtons = Math.floor(availableSpace / 40);
-      this.maxSpace = approxButtons - 2;
+      setTimeout(() => {
+        const searchbox = document.querySelector('#search-form');
+        if (!searchbox) return;
+        const firstbutton = document.querySelector('ytd-topbar-menu-button-renderer');
+        const availableSpace = firstbutton.offsetLeft - (searchbox.offsetLeft + searchbox.offsetWidth);
+        const approxButtons = Math.floor(availableSpace / 40);
+        this.maxSpace = Math.max(1, approxButtons - 2);
+      }, 500);
     },
-    async queryLive() {
-      const fetched = await fetch('https://api.holotools.app/v1/live?max_upcoming_hours=12&lookback_hours=0&hide_channel_desc=1');
+    async queryLive(doQueryIfSecondsLate) {
+      if (this.currentTime - this.lastQuery <= (doQueryIfSecondsLate * 1000)) {
+        return; // don't query API. not enough time has passed
+      }
+      const fetched = await fetch(API_URL);
       const json = await fetched.json();
-      console.log(json);
       this.$set(this.liveData, 'live', json.live);
       this.$set(this.liveData, 'upcoming', json.upcoming);
-      // debugger;
+      this.lastQuery = new Date();
     },
     timeDiff(curr, prev) {
       const ms_Min = 60 * 1000; // milliseconds in Minute
