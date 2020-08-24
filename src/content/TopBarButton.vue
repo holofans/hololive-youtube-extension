@@ -1,43 +1,18 @@
 <template>
   <div class="yt-simple-endpoint" tabindex="-1">
-    <!-- <b-tooltip
-      type="is-dark"
-      position="is-left"
-      :triggers="['click']"
-      :auto-close="['outside', 'escape']"
-    > -->
-      <div id="button" class=" style-default">
-        <button id="button" class="not-yt-icon-button" @click=playCurrent>
-          <div class="yt-icon-holder">
-            <div
-              class="icon-img"
-              :class="{'is-live': isLive}"
-              :style="{'background-image': `url('${channelThumbnail}')`}"
-            ></div>
-          </div>
-          <span class="note is-live" v-if="isLive">LIVE</span>
-          <span class="note" v-if="!isLive">{{timeToLive}}</span>
-        </button>
-      </div>
-      <!-- <template v-slot:content>
-        <span class="live-details is-dark px-0">
-          <b-button
-            icon-left="play"
-            type="is-text"
-            size="is-small like-rushias-chest"
-            class="py-1 px-4 mx-0"
-            @click=playCurrent
-          ></b-button>
-          <b-button
-            icon-left="calendar-outline"
-            type="is-text"
-            size="is-small like-rushias-chest"
-            class="py-1 px-4 mx-1"
-            @click=toggleSchedule
-          ></b-button>
-        </span>
-      </template> 
-    </b-tooltip> -->
+    <div id="button" class="style-default">
+      <button id="button" class="not-yt-icon-button" @click="playCurrent">
+        <div class="yt-icon-holder">
+          <div
+            class="icon-img"
+            :class="{'is-live': isLive}"
+            :style="{'background-image': `url('${channelThumbnail}')`}"
+          ></div>
+        </div>
+        <span class="note is-live" v-if="isLive">LIVE</span>
+        <span class="note" v-if="!isLive">{{timeToLive}}</span>
+      </button>
+    </div>
   </div>
 </template>
 
@@ -48,30 +23,30 @@ export default {
   created() {},
   mounted() {},
   destroyed() {},
-  methods: { toggleSchedule() {
-
+  methods: {
+    toggleSchedule() {},
+    playCurrent() {
+      window.location = this.currentVideoURL;
+    },
   },
-  playCurrent() {
-    window.location = this.currentVideoURL;
-  } },
 };
 </script>
 
 <style lang="scss" scoped>
 .not-yt-icon-button {
   vertical-align: middle;
-color: inherit;
-outline: none;
-background: none;
-margin: 0;
-border: none;
-padding: 0;
-width: 100%;
-height: 100%;
-line-height: 0;
-cursor: pointer;
--webkit-tap-highlight-color: rgba(0, 0, 0, 0);
--webkit-tap-highlight-color: transparent;
+  color: inherit;
+  outline: none;
+  background: none;
+  margin: 0;
+  border: none;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  line-height: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
 }
 .yt-icon-holder {
   display: block;
@@ -102,6 +77,7 @@ cursor: pointer;
   position: relative;
   font-family: 'Open Sans', 'Roboto', 'Lato', monospace;
   width: 24px;
+  color: #222;
   text-align: center;
   font-size: 9px;
   margin-top: 0px;
@@ -141,10 +117,10 @@ cursor: pointer;
   white-space: nowrap;
   i {
     font-size: 14px;
-    color: rgba(145,209,209,1);
+    color: rgba(145, 209, 209, 1);
   }
   button.button.is-text:hover {
-    background-color: rgba(52,71,71,1) !important;
+    background-color: rgba(52, 71, 71, 1) !important;
   }
 }
 </style>
