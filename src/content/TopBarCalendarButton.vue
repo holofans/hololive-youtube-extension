@@ -17,7 +17,9 @@ export default {
   created() {},
   mounted() {},
   destroyed() {},
-  methods: {},
+  methods: { toggleSchedule() {
+    window.open('https://hololive.jetri.co/#/');
+  } },
 };
 </script>
 

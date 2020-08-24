@@ -44,7 +44,7 @@ export default {
       const { live, upcoming } = this.liveData;
       if (!live || !upcoming) return [];
       const live_showable = live.length <= this.maxSpace ? live : live.slice(0, this.maxSpace);
-      const upcoming_sorted = upcoming.sort((e1, e2) => e1.live_schedule > e2.live_schedule);
+      const upcoming_sorted = upcoming.sort((e1, e2) => (new Date(e1.live_schedule) - new Date(e2.live_schedule)));
       const upcoming_showable = live.length >= this.maxSpace
         ? [] : upcoming_sorted.slice(0, this.maxSpace - live.length);
       return live_showable.concat(upcoming_showable);
@@ -65,10 +65,11 @@ export default {
     currentTime: {
       handler() {
         setTimeout(() => {
-          this.currentTime = +(new Date());
+          const now = new Date();
+          this.currentTime = +now;
           // check if querying is necessary, we want to query once every 5 minutes unless
           // the time is within 3 mins of :30 and :00, where we query every minute.
-          const currentMins = this.currentTime.getMinutes();
+          const currentMins = now.getMinutes();
           if (currentMins > 59 || currentMins < 5 || (currentMins > 29 && currentMins < 32)) {
             this.queryLive(60); // try querying every minute
           } else {
