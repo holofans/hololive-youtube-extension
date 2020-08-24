@@ -126,17 +126,6 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import url('https://cdn.materialdesignicons.com/5.3.45/css/materialdesignicons.min.css');
-
-#hsMain {
-  //This block helps us compile CSS such that Bulma CSS will only impact our own module and not screw with youtube.
-  @import '~bulma/sass/utilities/_all';
-
-  // Import Bulma and Buefy styles
-  @import '~bulma';
-  @import '~buefy/src/scss/buefy';
-}
-
 .main {
   margin-right: 8px;
 }
