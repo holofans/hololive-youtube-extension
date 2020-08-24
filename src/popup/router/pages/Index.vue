@@ -14,7 +14,7 @@
       Made with love using Vue.js. Bootstrapped with
       <a
         href="https://github.com/Kocal/vue-web-extension"
-      >Vue-web-extension</a>
+      >Vue-web-extension</a>. Leverages the Holotools API at https://api.holotools.app.
     </p>
     <p>
       This is a fan made project and is not an official hololive app.
