@@ -107,3 +107,27 @@ export default {
   }
 }
 </style>
+<style lang="scss">
+  #masthead[dark]{
+     .icon-img {
+      border: 1px solid rgb(210, 211, 211);
+      &.is-live {
+        border-color: rgb(248, 47, 47);
+        box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.4);
+        transform: scale(1);
+        animation: pulse 5s infinite;
+      }
+
+    }
+
+    .note{
+      color: #ddd;
+      text-shadow: -1px 0 #222, 0 1px #222, 1px 0 #222, 0 -1px #222; // transform: scale(1,0.7);
+
+      &.is-live{
+        color: rgb(253, 56, 56);
+        text-shadow: -1px 0 #ffcece, 0 1px #ffcece, 1px 0 #ffcece, 0 -1px #ffcece; // transform: scale(1,0.7);
+      }
+    }
+  }
+</style>

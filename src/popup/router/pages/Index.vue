@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <h3>HoloLive Now</h3>
     <p></p>
     <p>
@@ -14,7 +14,8 @@
       Made with love using Vue.js. Bootstrapped with
       <a
         href="https://github.com/Kocal/vue-web-extension"
-      >Vue-web-extension</a>. Leverages the Holotools API at https://api.holotools.app.
+      >Vue-web-extension</a>. Leverages the Holotools API at 
+      <a href="https://api.holotools.app">https://api.holotools.app</a>.
     </p>
     <p>
       This is a fan made project and is not an official hololive app.
@@ -52,11 +53,33 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+a, a:link{
+  color: rgb(4, 143, 161);
+}
+.container {
+  display: block;
+}
+
+.container:before {
+  content: "";
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%; 
+  height: 100%;  
+  opacity: .4; 
+  z-index: -1;
+  background-image: url("../../../icons/icon_128.png");
+  background-repeat: no-repeat;
+  background-position: bottom right;
+}
+
 p {
   font-size: 14px;
 }
 h3 {
   display: inline-block;
+  margin-top: 15px;
 }
 .button {
   line-height: 14px;

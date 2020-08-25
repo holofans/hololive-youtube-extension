@@ -1,7 +1,7 @@
 {
-  "name": "hololive-youtube-extension",
+  "name": "hololive-now",
   "version": "0.1.0",
-  "description": "Shows you which Hololivers are Live while you are browsing Youtube",
+  "description": "ライブのホロライブチャンネルを表示します。Shows you which Hololivers are Live while you are browsing Youtube",
   "author": {
     "name": "Holofans Team",
     "url": "https://github.com/holofans"

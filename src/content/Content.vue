@@ -2,18 +2,25 @@
   <div class="main" id="hsMain">
     <!-- Contains things that go into the top-bar of Youtube  -->
     <div class="top-bar-elements">
+      <transition name="hl-loading">
+        <div class="scheduleButton" v-if="loading">
+          <TopBarLoadingSpinner />
+        </div>
+      </transition>
 
-      <div class="scheduleButton" v-for="k in showableVideos" :key="k.yt_video_key">
-        <TopBarButton
-          :channelThumbnail="k.channel.photo"
-          :isLive="k.status == 'live'"
-          :currentVideoURL="`https://www.youtube.com/watch?v=${k.yt_video_key}`"
-          :timeToLive="timeDiff(new Date(k.live_schedule), currentTime)"
-        ></TopBarButton>
-      </div>
+      <transition-group name="hl-list" tag="div" class="top-bar-elements">
+        <div class="scheduleButton" v-for="k in showableVideos" :key="k.yt_video_key">
+          <TopBarButton
+            :channelThumbnail="k.channel.photo"
+            :isLive="k.status == 'live'"
+            :currentVideoURL="`https://www.youtube.com/watch?v=${k.yt_video_key}`"
+            :timeToLive="timeDiff(new Date(k.live_schedule), currentTime)"
+          ></TopBarButton>
+        </div>
+      </transition-group>
 
       <div class="scheduleButton">
-        <TopBarCalendarButton />
+        <TopBarMoreButton />
       </div>
     </div>
 
@@ -23,19 +30,21 @@
 
 <script>
 import TopBarButton from './TopBarButton.vue';
-import TopBarCalendarButton from './TopBarCalendarButton.vue';
+import TopBarMoreButton from './TopBarMoreButton.vue';
+import TopBarLoadingSpinner from './TopBarLoadingSpinner.vue';
 
 const API_URL = 'https://api.holotools.app/v1/live?max_upcoming_hours=12&lookback_hours=0&hide_channel_desc=1';
 
 export default {
   name: 'Content',
-  components: { TopBarButton, TopBarCalendarButton },
+  components: { TopBarButton, TopBarMoreButton, TopBarLoadingSpinner },
   data() {
     return {
       lastQuery: new Date(0),
+      loading: true,
       maxSpace: 0,
       liveData: {},
-      currentTime: +(new Date()),
+      currentTime: +new Date(),
     };
   },
   computed: {
@@ -43,11 +52,11 @@ export default {
       // truncates the array of videos to the limit that the UI is capable of showing.
       const { live, upcoming } = this.liveData;
       if (!live || !upcoming) return [];
-      const live_showable = live.length <= this.maxSpace ? live : live.slice(0, this.maxSpace);
-      const upcoming_sorted = upcoming.sort((e1, e2) => (new Date(e1.live_schedule) - new Date(e2.live_schedule)));
-      const upcoming_showable = live.length >= this.maxSpace
-        ? [] : upcoming_sorted.slice(0, this.maxSpace - live.length);
-      return live_showable.concat(upcoming_showable);
+      const upcoming_sorted = upcoming.sort((e1, e2) => new Date(e1.live_schedule) - new Date(e2.live_schedule));
+      return live
+        .concat(upcoming_sorted)
+        .filter(k => k.yt_video_key)
+        .slice(0, this.maxSpace);
     },
   },
   created() {
@@ -93,14 +102,16 @@ export default {
       }, 500);
     },
     async queryLive(doQueryIfSecondsLate) {
-      if (this.currentTime - this.lastQuery <= (doQueryIfSecondsLate * 1000)) {
+      if (this.currentTime - this.lastQuery <= doQueryIfSecondsLate * 1000) {
         return; // don't query API. not enough time has passed
       }
+      this.loading = true;
       const fetched = await fetch(API_URL);
       const json = await fetched.json();
       this.$set(this.liveData, 'live', json.live);
       this.$set(this.liveData, 'upcoming', json.upcoming);
       this.lastQuery = new Date();
+      this.loading = false;
     },
     timeDiff(curr, prev) {
       const ms_Min = 60 * 1000; // milliseconds in Minute
@@ -111,9 +122,11 @@ export default {
       if (diff < 0) return '???';
       if (diff < ms_Min) {
         return `${Math.round(diff / 1000)}s`;
-      } if (diff < ms_Hour) {
+      }
+      if (diff < ms_Hour) {
         return `${Math.round(diff / ms_Min)}m`;
-      } if (diff < ms_Day) {
+      }
+      if (diff < ms_Day) {
         return `${Math.round(diff / ms_Hour)}h`;
       }
       return `Around ${Math.round(diff / ms_Day)}d`;
@@ -144,5 +157,28 @@ export default {
 <style lang="scss">
 #hololive-schedule-container {
   display: flex;
+}
+.hl-loading-leave-active {
+  transition: opacity 0.5s;
+}
+.hl-loading-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+.hl-list-move {
+  transition: transform 0.5s;
+}
+.hl-list-enter-active,
+.hl-list-leave-active {
+  transition: all 0.5s;
+}
+.hl-list-enter, .hl-list-leave-to /* .list-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  transform: translateY(5px);
+}
+.hl-list-leave-active {
+  position: absolute;
+}
+.hl-list-item {
+  transition: all 0.5;
 }
 </style>
