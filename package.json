@@ -1,7 +1,7 @@
 {
   "name": "hololive-now",
-  "version": "0.1.0",
-  "description": "ライブのホロライブチャンネルを表示します。Shows you which Hololivers are Live while you are browsing Youtube",
+  "version": "1.0.0",
+  "description": "放送中のチャンネルと予約枠までのカウントダウンを表示します。Shows the currently live channels and also counts down to upcoming frames from Hololive",
   "author": {
     "name": "Holofans Team",
     "url": "https://github.com/holofans"

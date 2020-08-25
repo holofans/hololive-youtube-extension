@@ -1,6 +1,8 @@
-# Hololive Youtube Extension
+# Hololive Now
 
 See section labelled **Running** for run instructions
+
+Thanks lyger0 for translating the storefront summary.
 
 ![IMG](https://raw.githubusercontent.com/ugurcandede/Under-Construction/master/construction-scene/Capture.PNG)
 

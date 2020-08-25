@@ -1,7 +1,7 @@
 {
   "name": "hololive-now",
-  "description": "Shows you which Hololivers are Live while you are browsing Youtube",
-  "version": "0.9.0",
+  "description": "放送中のチャンネルと予約枠までのカウントダウンを表示します。Shows the currently live channels and also counts down to upcoming frames from Hololive",
+  "version": "1.0.0",
   "manifest_version": 2,
   "icons": {
     "48": "icons/icon_48.png",
