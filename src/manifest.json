@@ -1,5 +1,5 @@
 {
-  "name": "hololive-now",
+  "name": "Hololive Now",
   "description": "放送中のチャンネルと予約枠までのカウントダウンを表示します。Shows the currently live channels and also counts down to upcoming frames from Hololive",
   "version": "1.0.0",
   "manifest_version": 2,
